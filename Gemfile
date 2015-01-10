@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+gem 'shoppe', '~> 1.0.2'
 gem 'devise'
 gem 'cancan'
 gem 'rolify'
@@ -13,7 +14,7 @@ gem 'rack-zippy'
 gem 'invisible_captcha'
 gem 'bootstrap-validator-rails'
 # gem 'stripe'
-gem 'will_paginate', '~> 3.0'
+# gem 'will_paginate', '~> 3.0'
 # gem 'acts-as-taggable-on'
 # gem 'impressionist'
 gem 'gibbon', '~> 1.1.3'
@@ -44,7 +45,7 @@ group :production do
   gem "passenger"
 end
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 4.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
