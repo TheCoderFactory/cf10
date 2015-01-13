@@ -24,7 +24,7 @@
               <%= variant.name %>
             </h4>
             <p class="price">
-              <%= number_to_currency variant.price %>
+              <%= number_to_currency(variant.price * 1.1) %> (incl. GST)
             </p>
           </td>
           <td class="buy">
