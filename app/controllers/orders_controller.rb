@@ -101,8 +101,12 @@ class OrdersController < ApplicationController
   
   def payment
     @order = Shoppe::Order.find(current_order.id)
-    if request.patch?
-      redirect_to checkout_confirmation_path
+    if request.post?
+      if @order.accept_stripe_token(params[:stripe_token])
+        redirect_to checkout_confirmation_path
+      else
+        flash.now[:notice] = "Could not exchange Stripe token. Please try again."
+      end
     end
   end
   
@@ -117,7 +121,38 @@ class OrdersController < ApplicationController
         current_order.confirm!
         # This payment method should usually be called in a payment module or elsewhere but for the demo
         # we are adding a payment to the order straight away.
-        current_order.payments.create(:method => "Credit Card", :amount => current_order.total, :reference => rand(10000) + 10000, :refundable => true)
+        # current_order.payments.create(:method => "Credit Card", :amount => current_order.total, :reference => rand(10000) + 10000, :refundable => true)
+        # Set your secret key: remember to change this to your live secret key in production
+        # See your keys here https://dashboard.stripe.com/account
+        Stripe.api_key = "sk_test_lLqD3ovDSCZQHI8JO4Czposs"
+
+        # Get the credit card details submitted by the form
+        # token = params[:stripeToken]
+
+        # Create a Customer
+        customer = Stripe::Customer.create(
+          :card => current_order.properties.values.first,
+          :description => current_order.email_address
+        )
+
+        # Charge the Customer instead of the card
+        Stripe::Charge.create(
+            :amount => current_order.total.to_i * 100, # in cents
+            :currency => "aud",
+            :customer => current_order.first_name + ' ' + current_order.last_name
+        )
+
+        # # Save the customer ID in your database so you can use it later
+        # save_stripe_customer_id(user, customer.id)
+
+        # # Later...
+        # customer_id = get_stripe_customer_id(user)
+
+        # Stripe::Charge.create(
+        #   :amount   => 1500, # $15.00 this time
+        #   :currency => "usd",
+        #   :customer => customer_id
+        # )
         session[:order_id] = nil
         redirect_to root_path, :notice => "Order has been placed!"
       rescue Shoppe::Errors::PaymentDeclined => e
