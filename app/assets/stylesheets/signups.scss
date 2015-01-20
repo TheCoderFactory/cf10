@@ -23,5 +23,9 @@
 }
 
 .register-newsletter-tagline {
+  text-align: center;
   font-size: $font-size-large;
+  @media screen and (min-width: 600px) {
+    text-align: left;
+  }
 }
