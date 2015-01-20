@@ -80,13 +80,25 @@
       <% end %>
 
     </header>
-    <!-- Main content section
-    -->
+
+    <!-- Why Coderfactory Module -->
+    <section class="why-cf">
+      <div class="main-row why-cf-wrapper">
+        <div class="why-cf-icons">
+          <img src="<%= asset_path 'icon-code.svg' %>" />
+          <img src="<%= asset_path 'icon-acyhat.svg' %>" />
+          <img src="<%= asset_path 'icon-cf-logo.svg' %>" />
+        </div>
+        <p class="why-cf-info">At Coderfactory, we are creating an Australian community of people empowered to build take the next step and build a new career or startup by offering full-time immersive programs, classes and workshops on the most relevant skills of the 21st century – from web development and user experience design, to business fundamentals, to data science, to product management and digital marketing.</p>
+      </div>
+    </section>
+
+
     <section class="content">
       <div class="main-row">
-        <!-- Sidebar
-        -->
-        <section class="sidebar">
+
+        <!-- Sidebar Module -->
+        <!-- <section class="sidebar">
           <% if content_for?(:sidebar) %>
             <%= yield :sidebar %>
           <% else %>
@@ -95,7 +107,7 @@
             <% end %>
             <%= render 'shared/reasons' %>
           <% end %>
-        </section>
+        </section> -->
         <!-- Primary section
         -->
         <section class="primary">

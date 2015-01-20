@@ -65,8 +65,12 @@
     text-indent: -40000px;
     opacity: 0.3;
     background-size: 24px;
+    background-repeat: no-repeat;
+    border-radius: 100%;
     &:hover {
-      opacity: 0.7;
+      opacity: 1;
+      background: $dirty-gold;
+      background-size: 24px;
     }
   }
   .facebook a {
