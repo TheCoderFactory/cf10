@@ -19,6 +19,10 @@
   border-radius: 7px;
   font-size: $font-size-medium;
   font-weight: $font-weight-light;
+  cursor: pointer;
+  &:active {
+    opacity: 0.5;
+  }
 }
 
 .btn-block-calm {
@@ -28,7 +32,14 @@
   &:hover {
     background: darken($calm, 20);
   }
-  &:active {
-    opacity: 0.5;
+}
+
+.btn-block-light {
+  color: $midnight;
+  background: $light;
+  transition: background 0.25s ease-in;
+  border-bottom: 2px solid darken($light, 20);
+  &:hover {
+    background: darken($light, 20);
   }
 }
